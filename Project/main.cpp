@@ -8,7 +8,7 @@ int main() {
 	Boy boy2("п║аж", 28, 50000);
 	boys.push_back(boy1);
 	boys.push_back(boy2);
-	for (int i = 0; i < boys.size(); i++) {
+	for (unsigned int i = 0; i < boys.size(); i++) {
 		cout << boys[i].description() << endl;
 	}
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 using namespace std;
 class Girl;
 
@@ -14,6 +15,7 @@ public:
 	bool satisfied(const Girl& girl)const;
 	string description()const;
 
+	static void inputBoys(vector<Boy>& boys);
 private:
 	string name;
 	int age;

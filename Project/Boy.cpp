@@ -24,7 +24,9 @@ int Boy::getSalary()const {
 
 bool Boy::satisfied(const Girl& girl)const
 {	
-	if (girl.getFaceScore() > salary* SALARY_COEFFICIENT) return true;
+	int satisfiedFaceScore = salary * SALARY_COEFFICIENT;
+	if (salary * SALARY_COEFFICIENT > 100) satisfiedFaceScore = 100;
+	if (girl.getFaceScore() >= satisfiedFaceScore) return true;
 	return false;
 }
 

@@ -1,6 +1,6 @@
 #include "Girl.h"
 #include <sstream>
-#define FACESCORE_COEFFICIENT 300
+#define FACESCORE_COEFFICIENT 100
 #include "Boy.h"
 Girl::Girl(){
 	name = "";
@@ -24,7 +24,7 @@ int Girl::getFaceScore()const{
 
 bool Girl::satisfied(const Boy& boy)const
 {
-	if ( boy.getSalary() > faceScore*FACESCORE_COEFFICIENT) return true;//因为有boy的方法,所以要包括boy的头文件
+	if ( boy.getSalary() >= faceScore*FACESCORE_COEFFICIENT) return true;//因为有boy的方法,所以要包括boy的头文件
 	return false;
 }
 

@@ -1,16 +1,21 @@
 ﻿#include "Boy.h"
 #include "Girl.h"
 
+void automatch(vector<Boy> &boys, vector<Girl> &girls) {
+	//遍历两两配对
+	for (unsigned int b = 0; b < boys.size(); b++) {
+		for (unsigned int g = 0; g < girls.size(); g++) {
+			if (boys[b].satisfied(girls[g]) == true && girls[g].satisfied(boys[b]) == true) {//注意调用的是否是函数以及函数是否含参以及含参顺序
+				cout << boys[b].getName() << "<-->" << girls[g].getName() << endl;
+			}
+		}
+	}
+}
+
 int main() {
 	vector<Boy> boys;
-	Boy::inputBoys(boys);
-	for (unsigned int i = 0; i < boys.size(); i++) {
-		cout << boys[i].description() << endl;
-	}
-
 	vector<Girl> girls;
+	Boy::inputBoys(boys);
 	Girl::inputGirls(girls);
-	for (unsigned int i = 0; i < girls.size(); i++) {
-		cout << girls[i].description() << endl;
-	}
+	automatch(boys, girls);
 }

@@ -1,7 +1,6 @@
 #include "Boy.h"
 #include <sstream>
 #include "Girl.h"
-
 #define SALARY_COEFFICIENT 0.006
 Boy::Boy() {
 	name = "";

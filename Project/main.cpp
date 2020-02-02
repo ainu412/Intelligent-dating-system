@@ -1,6 +1,5 @@
 ﻿#include "Boy.h"
 #include "Girl.h"
-#include <vector>
 
 int main() {
 	vector<Boy> boys;

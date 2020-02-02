@@ -3,7 +3,6 @@
 #include <vector>
 using namespace std;
 class Girl;
-
 class Boy{
 public:
 	Boy();

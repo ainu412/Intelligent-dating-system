@@ -15,11 +15,9 @@ Girl::Girl(string name, int age, int faceScore){
 string Girl::getName()const{
 	return name;
 }
-
 int Girl::getAge()const{
 	return age;
 }
-
 int Girl::getFaceScore()const{
 	return faceScore;
 }
@@ -39,8 +37,8 @@ string Girl::description()const
 
 void Girl::inputGirls(vector<Girl>& girls)
 {
+	int n = 1;
 	while (1) {
-		int n = 1;
 		string name;
 		int age;
 		int faceScore;

@@ -16,6 +16,7 @@ public:
 	string description()const;
 
 	static void inputBoys(vector<Boy>& boys);
+
 private:
 	string name;
 	int age;

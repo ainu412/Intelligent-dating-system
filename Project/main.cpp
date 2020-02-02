@@ -1,14 +1,17 @@
-#include "Boy.h"
+Ôªø#include "Boy.h"
 #include "Girl.h"
 #include <vector>
 
 int main() {
 	vector<Boy> boys;
-	Boy boy1("–°Õı", 25, 40000);
-	Boy boy2("–°¡÷", 28, 50000);
-	boys.push_back(boy1);
-	boys.push_back(boy2);
+	Boy::inputBoys(boys);
 	for (unsigned int i = 0; i < boys.size(); i++) {
 		cout << boys[i].description() << endl;
+	}
+
+	vector<Girl> girls;
+	Girl::inputGirls(girls);
+	for (unsigned int i = 0; i < girls.size(); i++) {
+		cout << girls[i].description() << endl;
 	}
 }

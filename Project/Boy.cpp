@@ -16,11 +16,9 @@ Boy::Boy(string name, int age, int salary) {
 string Boy::getName()const {
 	return name;
 }
-
 int Boy::getAge()const {
 	return age;
 }
-
 int Boy::getSalary()const {
 	return salary;
 }
@@ -34,15 +32,14 @@ bool Boy::satisfied(const Girl& girl)const
 string Boy::description()const
 {
 	stringstream ret;
-	ret << "男:姓名(" << name << "),年龄(" << age << "),薪资(" << salary << ").";//流向ret;cout<<xxx,为将xxx流向控制台输出
+	ret << "男:姓名(" << name << "),年龄(" << age << "),月薪(" << salary << ").";//流向ret;cout<<xxx,为将xxx流向控制台输出
 	return ret.str();
 }
 
 void Boy::inputBoys(vector<Boy>& boys)
 {
-	{
+	{int n = 1;
 		while (1) {
-			int n = 1;
 			string name;
 			int age;
 			int salary;

@@ -348,3 +348,10 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/老师代码/老师代码.vcxproj.filters
+/老师代码
+/other
+/Intelligent-dating-system1
+/CURexercises
+/Project/Project.vcxproj.filters
+/Project/Project.vcxproj

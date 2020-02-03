@@ -5,8 +5,8 @@ using namespace std;
 
 class Father
 {public:
-	Father();
-	Father(string name, int age);
+	//Father();
+	Father(string name = "Î´ÖªĞÕÃû", int age = 0);
 	~Father();
 
 	string getName();

@@ -1,11 +1,11 @@
 #include "Father.h"
 
-Father::Father()
+/*Father::Father()
 {
 	name = "未知父亲姓名";
 	age = 0;
 	cout << __FUNCTION__ <<"不带参数"<< endl;
-}
+}*/
 
 Father::Father(string name, int age)
 {

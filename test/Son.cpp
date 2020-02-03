@@ -1,10 +1,10 @@
 #include "Son.h"
 
-Son::Son()
+/*Son::Son():Father()
 {
 	game = "未知游戏";
 	cout << __FUNCTION__ <<"不带参"<< endl;
-}
+}*/
 
 Son::Son(string name, int age, string game):Father(name,age)//因为完全继承,连名字和年龄也要通过这个初始化设定继承
 {

@@ -1,17 +1,16 @@
-#include "Car.h"
-#include "Tire.h"
+#include "Father.h"
+#include "Son.h"
 
 int main() {
-	Car car("兰博基尼", "Roadster", 808, 0, "兰博基尼", "V12");//买车
-	cout << car.description();//打印车的描述
-	
-	Tire tire1("米其林", 1, 340);//加轮胎
-	car.addTire(tire1);
-	Tire tire2("米其林2", 2, 342);
-	car.addTire(tire2);
-	vector<Tire*> tires = car.getTires();
-	for (unsigned int i = 0; i < tires.size(); i++) {
-		cout << tires[i]->description();
-	}
+	Father wjl("王健林", 68);//Father::Father带参
+	Son wsc;//Father::Father不带参 Son::Son不带参
+	cout << wjl.description();
+	cout << wsc.description();
 
+	//仅数据成员占用内存
+	cout << sizeof(wjl) << endl;//32
+	cout << sizeof(wsc) << endl;//60
+
+	system("pause");
+	return 0;
 }

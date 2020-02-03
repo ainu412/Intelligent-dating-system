@@ -1,10 +1,13 @@
-#include "Son.h"
+#include "Son.h"//Son里面必须带Father,故只写Son即可
 
 int main() {
-	Son s;
+	Son s("肉肉", 21, "红烧肉", "galgame");
 	Father f;
-	cout << f.description();
-	cout << s.description();
+	Mother m;
+	
+	s.ball();
+	s.dance();
+	cout << s.getGame() << endl;
 
 	return 0;
 }

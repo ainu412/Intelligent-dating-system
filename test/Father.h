@@ -13,6 +13,9 @@ class Father
 	int getAge();
 	string description();
 
+	void ball() {
+		cout << "°Ö°ÖÏ²»¶´òÇò" << endl;
+	}
 protected:
 	string name;
 private:

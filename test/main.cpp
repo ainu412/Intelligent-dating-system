@@ -6,11 +6,17 @@ public:
 	M() {
 		cout << __FUNCTION__ << endl;
 	}
+	~M() {
+		cout << __FUNCTION__ << endl;
+	}
 };
 
 class N {
 public:
 	N() {
+		cout << __FUNCTION__ << endl;
+	}
+	~N() {
 		cout << __FUNCTION__ << endl;
 	}
 };
@@ -20,11 +26,17 @@ public:
 	A() {
 		cout << __FUNCTION__ << endl;
 	}
+	~A() {
+		cout << __FUNCTION__ << endl;
+	}
 };
 
 class B :public A{//显式调用
 public:
 	B() {
+		cout << __FUNCTION__ << endl;
+	}
+	~B() {
 		cout << __FUNCTION__ << endl;
 	}
 private:
@@ -36,9 +48,10 @@ private:
 N n_s;//静态数据成员
 
 int main() {
-	B b1;
+	{B b1; }
+	
 	cout << "-------" << endl;
-	B b2;
+	B b2;//静态数据成员仅调用一次
 
 	return 0;
 }

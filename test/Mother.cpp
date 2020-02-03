@@ -1,12 +1,5 @@
 #include "Mother.h"
 
-/*Mother::Mother()
-{
-	name = "未知母亲姓名";
-	age = 0;
-	cout << __FUNCTION__ <<"不带参数"<< endl;
-}*/
-
 Mother::Mother(string food, string name, int age)
 {
 	this->food = food;

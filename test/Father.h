@@ -16,6 +16,9 @@ class Father
 	void ball() {
 		cout << "°Ö°ÖÏ²»¶´òÇò" << endl;
 	}
+	void dance() {
+		cout << "°Ö°ÖÒ²Ï²»¶ÌøÎè" << endl;
+	}
 protected:
 	string name;
 private:

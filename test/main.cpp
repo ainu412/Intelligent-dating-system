@@ -2,12 +2,15 @@
 
 int main() {
 	Son s("肉肉", 21, "红烧肉", "galgame");
-	Father f;
-	Mother m;
-	
-	s.ball();
+
+	//解决多重继承的二义性
+	//①类外:类名限定	
+	cout << s.Father::description() << endl;
+	cout << s.Mother::description() << endl;
+
+	//②儿子类内:同名方法类名限定,覆盖多选择
+	cout << s.description() << endl;
 	s.dance();
-	cout << s.getGame() << endl;
 
 	return 0;
 }

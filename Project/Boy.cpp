@@ -3,21 +3,12 @@
 #include "Girl.h"
 #define SALARY_COEFFICIENT 0.006
 Boy::Boy() {
-	name = "";
-	age = 0;
 	salary = 0;
 }
-Boy::Boy(string name, int age, int salary) {
-	this->name = name;
-	this->age = age;
+Boy::Boy(string name, int age, int salary) :Single(name, age){
 	this->salary = salary;
 }
-string Boy::getName()const {
-	return name;
-}
-int Boy::getAge()const {
-	return age;
-}
+
 int Boy::getSalary()const {
 	return salary;
 }
@@ -33,7 +24,7 @@ bool Boy::satisfied(const Girl& girl)const
 string Boy::description()const
 {
 	stringstream ret;
-	ret << "男:姓名(" << name << "),年龄(" << age << "),月薪(" << salary << ").";//流向ret;cout<<xxx,为将xxx流向控制台输出
+	ret << "男:姓名(" << getName() << "),年龄(" << getAge() << "),月薪(" << salary << ").";//流向ret;cout<<xxx,为将xxx流向控制台输出
 	return ret.str();
 }
 
@@ -46,7 +37,7 @@ void Boy::inputBoys(vector<Boy>& boys)
 			int salary;
 
 			cout << "请输入第" << n << "位小哥哥的姓名(输入0结束):";
-			cin >> name;//需要另外定义形参,最后一并通过vector名.push_back存入
+			cin >> name;//需要另外定义形参,最后一并通过vector名.push_back存入,push_back意为推到最后面,每次加入的都位于最后,像排队一样
 			if (name == "0") break;
 			cout << "年龄:";
 			cin >> age;

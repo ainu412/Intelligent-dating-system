@@ -3,21 +3,13 @@
 #define FACESCORE_COEFFICIENT 100
 #include "Boy.h"
 Girl::Girl(){
-	name = "";
-	age = 0;
 	faceScore = 0;
 }
-Girl::Girl(string name, int age, int faceScore){
-	this->name = name;
-	this->age = age;
+Girl::Girl(string name, int age, int faceScore) :Single (name, age) {
+
 	this->faceScore = faceScore;
 }
-string Girl::getName()const{
-	return name;
-}
-int Girl::getAge()const{
-	return age;
-}
+
 int Girl::getFaceScore()const{
 	return faceScore;
 }
@@ -31,7 +23,7 @@ bool Girl::satisfied(const Boy& boy)const
 string Girl::description()const
 {
 	stringstream ret;
-	ret << "女:姓名(" << name << "),年龄(" << age << "),颜值(" << faceScore << ").";//流向ret;cout<<xxx,为将xxx流向控制台输出
+	ret << "女:姓名(" << getName() << "),年龄(" << getAge() << "),颜值(" << faceScore << ").";//流向ret;cout<<xxx,为将xxx流向控制台输出
 	return ret.str();
 }
 

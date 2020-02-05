@@ -3,10 +3,7 @@
 #include <iomanip>
 #define FACESCORE_COEFFICIENT 100
 #include "Boy.h"
-Girl::Girl(){
-	faceScore = 0;
-}
-Girl::Girl(string name, int age, int faceScore) :Single (name, age) {
+Girl::Girl(string name = "", int age = 0, int faceScore = 0) :Single (name, age) {
 
 	this->faceScore = faceScore;
 }

@@ -1,9 +1,6 @@
 #include "Single.h"
-Single::Single() {
-	name = "";
-	age = 0;
-}
-Single::Single(string name, int age) {
+
+Single::Single(string name = "", int age = 0) {
 	this->name = name;
 	this->age = age;
 }

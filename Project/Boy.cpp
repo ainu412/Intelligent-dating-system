@@ -3,10 +3,8 @@
 #include <iomanip>
 #include "Girl.h"
 #define SALARY_COEFFICIENT 0.006
-Boy::Boy() {
-	salary = 0;
-}
-Boy::Boy(string name, int age, int salary) :Single(name, age){
+
+Boy::Boy(string name = "", int age = 0, int salary = 0) :Single(name, age){//若二者合一,则定义新变量时是否需要带括号??必须带括号,因为不存在默认构造函数!
 	this->salary = salary;
 }
 

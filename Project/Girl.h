@@ -4,6 +4,7 @@
 #include "Single.h"
 using namespace std;
 class Boy;
+
 class Girl:public Single{
 public:
 	Girl();

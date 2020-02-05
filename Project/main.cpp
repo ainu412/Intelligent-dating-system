@@ -3,8 +3,10 @@
 #include "Database.h"
 //inputGirls:控制台->vector
 //saveGirls:vector->文件
-bool input = false;
-int main() {
+bool input = true;
+
+//打印所有用户信息和配对信息
+void allMatches() {
 	string in;
 	cout << "是否输入新的用户信息[是/否]:";
 	cin >> in;
@@ -13,7 +15,18 @@ int main() {
 	Database data;
 	data.load(input);
 	data.print();
-	data.automatch();
+	data.allMatch();
+}
 
+//只打印输入用户的配对信息
+void inputMatches() {
+	Database data;
+	data.load(input);
+	data.inputMatch();
+}
+
+//仅显示输入用户的配对信息,并将输入用户的信息存入文件
+int main() {
+	inputMatches();
 	return 0;
 }

@@ -9,11 +9,22 @@
 Database::Database()
 {
 }
-
-void Database::automatch()const
-{
+void Database::allMatch() const {
+	cout << "全部单身男女自动配对结果:" << endl;
+	automatch(boys, girls);
+}
+void Database::inputMatch() const {
 	string line(100, '-');
-	cout << "自动配对结果:" << endl;
+	cout << "输入单身男自动配对结果:" << endl;
+	automatch(newBoys, girls);
+	cout << line << endl;
+	cout << "输入单身女自动配对结果:" << endl;
+	automatch(boys, newGirls);
+	cout << line << endl;
+}
+
+void Database::automatch(static vector<Boy> boys, static vector<Girl> girls)const
+{
 	//遍历两两配对
 	for (unsigned int b = 0; b < boys.size(); b++) {
 		for (unsigned int g = 0; g < girls.size(); g++) {
@@ -27,7 +38,6 @@ void Database::automatch()const
 		}
 		cout << endl;//一位男士的所有配对结束后空一行
 	}
-	cout << line << endl;
 }
 
 void Database::print()const

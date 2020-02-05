@@ -1,54 +1,51 @@
 #include <iostream>
-#include <fstream>
-#include <string>
+#include <sstream>
 using namespace std;
+class Service {
+public:
+	Service() {
 
-//读取文件的最后50个字符
-void Seekg(string filename) {
-	ifstream inFile;
-	inFile.open(filename);
-	if (!inFile.is_open())exit(1);
+	}
+	void up(Computer* computer, string version);//友元函数不分public和private,因为无论写哪外部都可以调用
 
-	inFile.seekg(-50, inFile.end);
-	while (!inFile.eof()) {
-		string line;
-		getline(inFile, line);
-		cout << line << endl;
+};
+class Computer {
+public:
+	Computer(string cpu = "") {
+		this->cpu = cpu;
 	}
 
-	inFile.close();
-}
 
-//读取文件所占空间大小
-void Tellg(string filename) {
-	ifstream infile;
-	infile.open(filename);
-	if (!infile.is_open()) exit(1);
+	string description() {
+		stringstream ret;
+		ret << "cpu:" << cpu << endl;
+		return ret.str();
+	}
 
-	infile.seekg(0, infile.end);
-	int len = infile.tellg();
-	cout << len << endl;
+private:
+	string cpu;
 
-	infile.close();
-}
+	friend void upgrade(Computer* computer) {//友元函数不分public和private,因为无论写哪外部都可以调用
+		computer->cpu = "i9";//service要在computer之前定义,不然不知道定义的是哪个函数
+	}
+	//要声明可以对自己进行改变的其他类的成员函数
+	friend void Service::up(Computer* computer, string version);
+};
 
-//先向新文件写入：“123456789”(1处于第0个字符位置)
-//然后再在第4个字符位置覆盖写入“ABC”
-void Seekp() {
-	ofstream outfile;
-	outfile.open("新.txt");
-	if (!outfile.is_open()) exit(1);
 
-	outfile << "123456789";
-	outfile.seekp(4, outfile.beg);
-	outfile << "ABC";
 
-	outfile.close();
+void Service::up(Computer* computer, string version)
+{
+	computer->cpu = version;
 }
 
 int main() {
-	Seekg("main.cpp");
-	Tellg("main.cpp");
-	Seekp();
-	return 0;
+	Computer computer("i7");
+	cout << computer.description();
+	upgrade(&computer);
+	cout << computer.description();
+
+	Service service;
+	service.up(&computer, "i8");
+	cout << computer.description();
 }

@@ -10,4 +10,7 @@ public:
 	Pork operator+(Beef& beef)const;
 private:
 	int weight;
+
+	friend Pork operator+(Beef& beef, Lamb& lamb);
+	friend Pork operator+(Beef& beef1, Beef& beef2);
 };

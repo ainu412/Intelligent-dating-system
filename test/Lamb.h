@@ -1,5 +1,6 @@
 #pragma once
 #include "Pork.h"
+
 class Lamb {
 public:
 	Lamb();

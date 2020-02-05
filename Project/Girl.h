@@ -3,14 +3,15 @@
 #include <vector>
 #include "Single.h"
 using namespace std;
-
 class Boy;
 class Girl:public Single{
 public:
 	Girl();
 	Girl(string name, int age, int faceScore);
 
-	int getFaceScore()const;
+	int getFaceScore()const{
+		return faceScore;
+	}
 	bool satisfied(const Boy& boy)const;
 	string description()const;
 

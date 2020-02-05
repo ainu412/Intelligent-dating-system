@@ -10,10 +10,6 @@ Boy::Boy(string name, int age, int salary) :Single(name, age){
 	this->salary = salary;
 }
 
-int Boy::getSalary()const {
-	return salary;
-}
-
 bool Boy::satisfied(const Girl& girl)const
 {	
 	int satisfiedFaceScore = salary * SALARY_COEFFICIENT;

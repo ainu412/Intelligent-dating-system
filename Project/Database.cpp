@@ -47,21 +47,24 @@ void Database::print()const
 	cout << line << endl;
 }
 
-void Database::loadBoys()
+void Database::loadBoys(bool input)
 {
 	//打开读文件
 	ifstream boyfile;
 	boyfile.open(BOY_FILE);
 	if (!boyfile.is_open()) {
 		//还没有此文件名的文件,需要用户输入,作为基础信息,存入vector->vector.vector中已有,不需要再从文件中读取
-		Boy::inputBoys(this->boys);
+		Boy::inputBoys(this->newBoys);
 
 		//将vector中的基础信息以description中的格式写入新建的文件,并结束加载
-		saveBoys();
+		saveBoys(newBoys);
 		boyfile.close();
 		return;
 	}
-
+	if (input) {
+		Boy::inputBoys(this->newBoys);
+		saveBoys(newBoys);
+	}
 	while (1) {
 
 		//将读文件信息解析??为啥要解析嘞??已经存好了的啊,,是为了显示出来吗,要显示出来可以直接按存入的vector显示吗?不能
@@ -89,23 +92,35 @@ void Database::loadBoys()
 		boys.push_back(Boy(name, age, salary));//string存入时最后记得加\0结束符,因为读取的时候要用char型读取,可以不加,因为格式里面专门加了空格隔开
 
 	}
-
 	boyfile.close();
-}
 
-void Database::loadGirls()
+}
+//inputGirls:控制台->vector
+//saveGirls:vector->文件
+void Database::loadGirls(bool input)
 {
 
 	ifstream girlfile;
 	girlfile.open(GIRL_FILE);
 	if (!girlfile.is_open()) {
 		//还没有此文件,需要用户输入基础信息
-		Girl::inputGirls(this->girls);
-		//将输入的基础信息以description中的格式保存至文件
-		saveGirls();
+		Girl::inputGirls(this->newGirls);
+		//将输入的基础信息以description中的格式保存至文件尾部
+		saveGirls(newGirls);
 		girlfile.close();
 		return;
 	}
+	if (input) {
+		//还没有此文件,需要用户输入基础信息
+		Girl::inputGirls(this->newGirls);
+		//将输入的基础信息以description中的格式保存至文件尾部
+		saveGirls(newGirls);
+	}
+	/*if (input == true) {
+		Girl::inputGirls(this->girls);//vector只有新读进来的
+		saveGirls();//只在文件尾部追加新读进来的
+		girlfile.close();
+	}*/
 
 	while (1) {
 
@@ -134,11 +149,11 @@ void Database::loadGirls()
 		girls.push_back(Girl(name, age, faceScore));//string存入时最后记得加\0结束符,因为读取的时候要用char型读取,可以不加,因为格式里面专门加了空格隔开
 
 	}
-
 	girlfile.close();
+
 }
 
-void Database::saveBoys()
+void Database::saveBoys(vector<Boy> boys)
 {
 	ofstream boyfile;
 	boyfile.open(BOY_FILE, ios::app);//尾部附加
@@ -154,7 +169,7 @@ void Database::saveBoys()
 	boyfile.close();
 }
 
-void Database::saveGirls()
+void Database::saveGirls(vector<Girl> girls)
 {
 	ofstream girlfile;
 	girlfile.open(GIRL_FILE, ios::app);

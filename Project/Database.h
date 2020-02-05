@@ -17,22 +17,24 @@ class Database
 public:
 	Database();
 
-	void load() {
-		loadBoys();
-		loadGirls();
+	void load(bool input) {
+		loadBoys(input);
+		loadGirls(input);
 	}
 	void automatch() const;
 	void print() const;//打印vector中男女信息
 
 private:
-	vector<Boy> boys;
+	vector<Boy> boys;//vector每次用之前需要初始化为0吗?
 	vector<Girl> girls;
+	vector<Boy> newBoys;
+	vector<Girl> newGirls;
 
-	void loadBoys();//将文件中加载至vector
-	void loadGirls();
+	void loadBoys(bool input);//将文件中加载至vector
+	void loadGirls(bool input);
 
-	void saveBoys();//将vector中存入文件
-	void saveGirls();
+	void saveBoys(vector<Boy> boys);//将vector中存入文件
+	void saveGirls(vector<Girl> girls);
 };
 
 

@@ -11,10 +11,6 @@ Girl::Girl(string name, int age, int faceScore) :Single (name, age) {
 	this->faceScore = faceScore;
 }
 
-int Girl::getFaceScore()const{
-	return faceScore;
-}
-
 bool Girl::satisfied(const Boy& boy)const
 {
 	if ( boy.getSalary() >= faceScore*FACESCORE_COEFFICIENT) return true;//因为有boy的方法,所以要包括boy的头文件

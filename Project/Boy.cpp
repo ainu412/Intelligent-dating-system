@@ -1,5 +1,6 @@
 #include "Boy.h"
 #include <sstream>
+#include <iomanip>
 #include "Girl.h"
 #define SALARY_COEFFICIENT 0.006
 Boy::Boy() {
@@ -24,7 +25,9 @@ bool Boy::satisfied(const Girl& girl)const
 string Boy::description()const
 {
 	stringstream ret;
-	ret << "男:姓名(" << getName() << "),年龄(" << getAge() << "),月薪(" << salary << ").";//流向ret;cout<<xxx,为将xxx流向控制台输出
+	ret << "男 姓名:" << setw(9) << left << name 
+		<< " 年龄:" << setw(4) << age 
+		<< "月薪:" << salary;//流向ret;cout<<xxx,为将xxx流向控制台输出
 	return ret.str();
 }
 

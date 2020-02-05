@@ -19,4 +19,3 @@ public:
 private:
 	int faceScore;//бежЕ
 };
-

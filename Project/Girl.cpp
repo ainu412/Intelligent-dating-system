@@ -1,5 +1,6 @@
 #include "Girl.h"
 #include <sstream>
+#include <iomanip>
 #define FACESCORE_COEFFICIENT 100
 #include "Boy.h"
 Girl::Girl(){
@@ -23,7 +24,9 @@ bool Girl::satisfied(const Boy& boy)const
 string Girl::description()const
 {
 	stringstream ret;
-	ret << "女:姓名(" << getName() << "),年龄(" << getAge() << "),颜值(" << faceScore << ").";//流向ret;cout<<xxx,为将xxx流向控制台输出
+	ret << "女 姓名:" << setw(9) << left << name//left=setiosflags(ios::left)
+		<< " 年龄:" << setw(4) << age
+		<< "颜值:" << faceScore;
 	return ret.str();
 }
 

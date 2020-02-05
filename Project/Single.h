@@ -12,7 +12,7 @@ public:
 	string getName()const;
 	int getAge()const;
 
-private:
+protected:
 	string name;
 	int age;
 };

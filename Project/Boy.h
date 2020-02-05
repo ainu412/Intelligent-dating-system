@@ -14,7 +14,7 @@ public:
 	bool satisfied(const Girl& girl)const;
 	string description()const;
 
-	static void inputBoys(vector<Boy>& boys);
+	static void inputBoys(vector<Boy>& boys);//控制台中转至容器,容器中转至文件
 
 private:
 	int salary;

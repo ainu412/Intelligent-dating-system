@@ -1,5 +1,4 @@
 #include "Single.h"
-
 Single::Single() {
 	name = "";
 	age = 0;

@@ -1,5 +1,4 @@
 #include "Boy.h"
-using namespace std;
 int Boy::total_id = 0;//记得声明所属类
 
 Boy::Boy(const char* name, int age)
@@ -63,6 +62,27 @@ void Boy::operator==(const Boy& boy)const
 		cout << "二者年龄相同!" << endl;
 	}
 }
+int Boy::operator[](KEY key)
+{
+	switch (key) {
+	case(AGE_KEY):
+		return age;
+		break;
+	case(ID_KEY):
+		return id;
+		break;
+	default:
+		return -1;
+		break;
+	}
+}
+char* Boy::operator[](string name_key)
+{
+	if (NAME_KEY == name_key) {
+		return name;
+	}
+}
+
 void Boy::description()
 {
 	cout << "姓名:" << name << " 年龄:" << age 

@@ -38,5 +38,8 @@ int main() {
 
 	b1 == b2;
 
+	cout << b1[NAME_KEY] << endl;
+	cout << b1[AGE_KEY] << endl;
+
 	return 0;
 }

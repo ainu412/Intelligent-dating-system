@@ -47,6 +47,22 @@ Boy& Boy::operator=(const Boy& boy) {
 	return *this;
 }
 
+const Boy& Boy::operator>(const Boy& boy)const//
+{
+	if (age > boy.age) {
+		return boy;//返回值类型与参数保持一致
+	}
+	else {
+		return *this;//若相等,也打印自己
+	}
+}
+
+void Boy::operator==(const Boy& boy)const
+{
+	if (age == boy.age) {
+		cout << "二者年龄相同!" << endl;
+	}
+}
 void Boy::description()
 {
 	cout << "姓名:" << name << " 年龄:" << age 

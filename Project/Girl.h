@@ -7,17 +7,19 @@ class Boy;
 
 class Girl:public Single{
 public:
-	Girl();
-	Girl(string name, int age, int faceScore);
+	Girl(string name = "", int age = 0, int faceScore = 0);
 
 	int getFaceScore()const{
 		return faceScore;
 	}
 	bool satisfied(const Boy& boy)const;
-	string description()const;
+	//string Girl::description()const;
+	bool operator>(Girl& girl);
+	friend ostream& operator<<(ostream& os, const Girl& girl);
 
 	static void inputGirls(vector<Girl>& girls);
 
 private:
 	int faceScore;//бежЕ
 };
+ostream& operator<<(ostream& os, const Girl& girl);

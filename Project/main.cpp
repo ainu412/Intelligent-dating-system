@@ -1,6 +1,7 @@
 ﻿#include "Boy.h"
 #include "Girl.h"
 #include "Database.h"
+
 //inputGirls:控制台->vector
 //saveGirls:vector->文件
 bool input = true;
@@ -18,15 +19,18 @@ void allMatches() {
 	data.allMatch();
 }
 
-//只打印输入用户的配对信息
-void inputMatches() {
+//仅显示输入用户的配对信息,并将输入用户的信息存入文件
+void inputMatches() {//单身女配对:一个女和所有男试一遍,把和自己合适的全部印出,故上述automatch算法要交换g b位置
 	Database data;
 	data.load(input);
 	data.inputMatch();
 }
-
-//仅显示输入用户的配对信息,并将输入用户的信息存入文件
+void bestMatches() {
+	Database data;
+	data.load(input);
+	data.bestMatch();
+}
 int main() {
-	inputMatches();
+	bestMatches();
 	return 0;
 }

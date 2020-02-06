@@ -3,7 +3,7 @@
 #include <iomanip>
 #define FACESCORE_COEFFICIENT 100
 #include "Boy.h"
-Girl::Girl(string name = "", int age = 0, int faceScore = 0) :Single (name, age) {
+Girl::Girl(string name, int age, int faceScore) :Single (name, age) {
 
 	this->faceScore = faceScore;
 }
@@ -14,13 +14,9 @@ bool Girl::satisfied(const Boy& boy)const
 	return false;
 }
 
-string Girl::description()const
+bool Girl::operator>(Girl& girl)
 {
-	stringstream ret;
-	ret << "女 姓名:" << setw(9) << left << name//left=setiosflags(ios::left)
-		<< " 年龄:" << setw(4) << age
-		<< "颜值:" << faceScore;
-	return ret.str();
+	return faceScore > girl.faceScore;
 }
 
 void Girl::inputGirls(vector<Girl>& girls)
@@ -43,4 +39,10 @@ void Girl::inputGirls(vector<Girl>& girls)
 
 		n++;
 	}
+}
+ostream& operator<<(ostream& os, const Girl& girl) {
+	os  << "女 姓名:" << setw(9) << left << girl.name//left=setiosflags(ios::left)
+		<< " 年龄:" << setw(4) << girl.age
+		<< "颜值:" << girl.faceScore << endl;
+	return os;
 }

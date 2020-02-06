@@ -16,13 +16,18 @@ bool Boy::satisfied(const Girl& girl)const
 	return false;
 }
 
-string Boy::description()const
+//string Boy::description()const
+//{
+//	stringstream ret;
+//	ret << "男 姓名:" << setw(9) << left << name 
+//		<< " 年龄:" << setw(4) << age 
+//		<< "月薪:" << salary;//流向ret;cout<<xxx,为将xxx流向控制台输出
+//	return ret.str();
+//}
+
+bool Boy::operator>(Boy& boy)
 {
-	stringstream ret;
-	ret << "男 姓名:" << setw(9) << left << name 
-		<< " 年龄:" << setw(4) << age 
-		<< "月薪:" << salary;//流向ret;cout<<xxx,为将xxx流向控制台输出
-	return ret.str();
+	return salary > boy.salary;
 }
 
 void Boy::inputBoys(vector<Boy>& boys)
@@ -46,4 +51,11 @@ void Boy::inputBoys(vector<Boy>& boys)
 			n++;
 		}
 	}
+}
+//cout << 重载和比较 < 重载
+ostream& operator<<(ostream& os, const Boy& boy) {
+	os << "男 姓名:" << setw(9) << left << boy.name
+		<< " 年龄:" << setw(4) << boy.age
+		<< "月薪:" << boy.salary << endl;
+	return os;
 }

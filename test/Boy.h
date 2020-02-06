@@ -30,6 +30,10 @@ public:
 	int operator[](KEY key);
 	char* operator[](string name_key);
 
+	ostream& operator>>(ostream& os)const;
+	istream& operator<<(istream& is);
+	friend ostream& operator<<(ostream& os, Boy& boy);
+	friend istream& operator>>(istream& is, Boy& boy);
 private:
 	char* name;//对于输入长度,申请动态内存空间;只有指针才能申请,故定义为指针
 	int age;

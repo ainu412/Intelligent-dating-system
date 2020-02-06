@@ -83,6 +83,34 @@ char* Boy::operator[](string name_key)
 	}
 }
 
+ostream& Boy::operator>>(ostream& os)const//记得用别名,只读加const
+{
+	os  << "姓名:" << name << " 年龄:" << age
+		<< " id:" << id << " 总人数:" << total_id << endl;
+	return os;
+}
+
+istream& Boy::operator<<(istream& is) 
+{
+	//因为name是char*,不能直接修改,通过string中转
+	string tmp;
+	is >> tmp >> age;
+
+	//原先是用动态内存存储,故先清掉
+	if (name) {//若不为空指针
+		delete[] name;
+	}
+
+	//根据输入tmp的字符长度分配动态内存
+	//可以以c语言方式分配
+	//反正析构函数的delete也可以清除malloc分配的
+	//boy.name = (char*)malloc(tmp.length() + 1);
+	name = new char[tmp.length() + 1];
+	strcpy_s(name, tmp.length() + 1, tmp.c_str());//记得将string类型的tmp转为c_str再cpy
+
+	return is;
+}
+
 void Boy::description()
 {
 	cout << "姓名:" << name << " 年龄:" << age 

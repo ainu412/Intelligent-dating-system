@@ -3,16 +3,16 @@
 using namespace std;
 class Pork {
 public:
-	Pork();
+
 	Pork(int weight);
 	Pork operator+(const Pork& pork);
 
 	void description() {
 		cout << "ÖíÈâÖØÁ¿:" << weight << endl;
 	}
-	int getWeight() {
-		return weight;
-	}
+
 private:
 	int weight;
+
+	friend Pork operator+(int n, const Pork& pork);
 };

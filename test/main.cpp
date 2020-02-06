@@ -4,9 +4,14 @@ Pork operator+(Beef& beef, Lamb& lamb){//因牛肉的重量没有public函数可获得,故定义
 	return Pork(tmp);
 }
 Pork operator+(Beef& beef1, Beef& beef2) {//因牛肉的重量没有public函数可获得,故定义此函数为牛的友元函数,以访问其私有重量
-	int tmp = beef1.weight * 2 + beef2.weight * 2;
+	int tmp = beef1.weight * 2 + beef2.weight * 2;//①友元函数:需多写beef1参数②可实现10+Pork
 	return Pork(tmp);
 }
+Pork operator+(int n, const Pork& pork) {
+	int tmp = n + pork.weight;
+	return Pork(tmp);
+}
+
 int main() {
 	Beef b1(1),b100(100);
 	Lamb l2(2),l200(200);
@@ -17,6 +22,10 @@ int main() {
 
 	p1 = b1 + b100;//202
 	p1.description();
+
+	//10+Pork只能用友元函数
+	p2 = 10 + p3;//13
+	p2.description();
 
 	//p1 = l2 + b1;×
 	//1)l2.operator+(b1)=>Lamb中添加Pork operator+(Beef& beef)函数

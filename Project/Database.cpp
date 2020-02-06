@@ -23,7 +23,7 @@ void Database::inputMatch() const {
 	cout << line << endl;
 }
 
-void Database::automatch(static vector<Boy> boys, static vector<Girl> girls)const
+void Database::automatch(vector<Boy> boys, vector<Girl> girls)const
 {
 	//遍历两两配对
 	for (unsigned int b = 0; b < boys.size(); b++) {

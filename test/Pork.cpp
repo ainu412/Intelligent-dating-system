@@ -1,11 +1,6 @@
 #include "Pork.h"
 
-Pork::Pork()
-{
-	weight = 0;
-}
-
-Pork::Pork(int weight)
+Pork::Pork(int weight=0)
 {
 	this->weight = weight;
 }

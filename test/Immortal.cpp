@@ -15,9 +15,9 @@ void Immortal::mining()
 
 bool Immortal::trade()
 {
-	if (!alive) { 
+	if (!alive) {
 		cerr << "修仙者已死!交易失败!" << endl;
-		return false; 
+		return false;
 	}
 	else {
 		SpriteStone stone;
@@ -153,6 +153,45 @@ bool Immortal::trade(Monster& monster, Immortal& other, Monster& aMonster)
 	return false;
 }
 
+void Immortal::fight(Immortal& other)
+{
+	if (!alive || !other.alive) {
+		cerr << "已死,决斗失败!" << endl;
+		return;
+	}
+	//计算自己灵石
+	SpriteStone stone, aStone;
+	for (unsigned int i = 0; i < stones.size(); i++) {
+		stone = stone + stones[i];
+	}
+	//计算他人灵石
+	for (unsigned int i = 0; i < other.stones.size(); i++) {
+		aStone = aStone + other.stones[i];
+	}
+	if (getPower() > other.getPower()) {
+		cout << "胜利!获得对方所有灵石和妖兽!" << endl;
+		//获取对方所有灵石和妖兽
+		stones.push_back(aStone);
+		for (unsigned int i = 0; i < other.monsters.size(); i++) {
+			monsters.push_back(other.monsters[i]);
+		}
+
+		other.dead();
+	}
+	else if (getPower() < other.getPower()) {
+		cout << "战败失去所有灵石和妖兽!" << endl;
+		//对方获取所有灵石和妖兽
+		other.stones.push_back(stone);
+		for (unsigned int i = 0; i < monsters.size(); i++) {
+			other.monsters.push_back(monsters[i]);
+		}
+		dead();
+	}
+	else if (getPower() == other.getPower()) {
+		cout << "平局!来年再战~" << endl;
+	}
+}
+
 void Immortal::fight(Monster& monster)
 {
 	if (getPower() >= monster.getPower()) {
@@ -174,6 +213,12 @@ int Immortal::getPower()const
 	//加自己的战斗力
 	power += (int(level) + 1) * POWER_TO_IMMORTAL_LEVEL_RATIO;//时刻注意自己的级别int(level)数字小1,以后为防止忘记,可以写=1
 
+	//加自己的全部灵石
+	SpriteStone stone, aStone;
+	for (unsigned int i = 0; i < stones.size(); i++) {
+		stone = stone + stones[i];
+	}
+	power += stone.getCnt();
 	return power;
 }
 
@@ -183,8 +228,8 @@ bool Immortal::hasMonster(const Monster& exMonster)const//寻找有没有某一类的妖兽
 	//for (auto it = monsters.begin(); it != monsters.end;) {
 		//if (*it == &exMonster) {//这里不行了,因为行的时候it存为vector<Human>* friends存的是指针,指针解引就是地址
 								//故存的应改为指针,指向拥有的妖兽(聚合关系)
-	for (unsigned int i=0;i<monsters.size();i++){
-		if(exMonster == monsters[i]){
+	for (unsigned int i = 0; i < monsters.size(); i++) {
+		if (exMonster == monsters[i]) {
 			return true;
 		}
 	}
@@ -202,6 +247,28 @@ void Immortal::removeMonster(const Monster& monster)//要找到存有的那一种妖兽!
 		}
 		else {
 			it++;
+		}
+	}
+}
+
+void Immortal::upgrade()
+{
+	if (!alive) {
+		cout << "已死!渡劫失败!" << endl;
+	}
+	else {
+		if (getPower() > (int(level) + 1)* POWER_TO_IMMORTAL_LEVEL_RATIO* POWER_TO_UPGRADE_RATIO) {
+			if (level < IMMORTAL_LEVEL::IMMORAL_LEVEL_CNT) {
+				level = IMMORTAL_LEVEL((int)level + 1);
+				cout << "渡劫成功!" << "当前" << level << endl;
+			}
+			else {
+				cout << "不灭之体，天罚奈何？" << endl;
+			}
+		}
+		else {
+			cout << "渡劫失败,香消命殒." << endl;
+			dead();
 		}
 	}
 }

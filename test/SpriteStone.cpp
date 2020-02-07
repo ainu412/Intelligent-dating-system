@@ -160,6 +160,11 @@ bool SpriteStone::operator==(const SpriteStone& otherStone)
 	return cnt == sum;
 }
 
+int SpriteStone::getCnt()
+{
+	return cnt;
+}
+
 ostream& operator<<(ostream& os, const SpriteStone& stone)
 {
 	os << stone.str();

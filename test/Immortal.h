@@ -4,6 +4,7 @@
 #include <vector>
 using namespace std;
 #define POWER_TO_IMMORTAL_LEVEL_RATIO 200
+#define POWER_TO_UPGRADE_RATIO 2
 enum class IMMORTAL_LEVEL {
 	LIAN_QI = 1,
 	ZHU_JI,
@@ -14,7 +15,7 @@ enum class IMMORTAL_LEVEL {
 	HE_TI,
 	DA_CHENG,
 	DU_JIE,
-	IMMORAL_LEVEL_CNT
+	IMMORAL_LEVEL_CNT = 9
 };
 class Monster;
 class Immortal
@@ -36,7 +37,10 @@ public:
 	bool trade(Immortal& otherImmortal, Monster& monster);
 	//和其他修仙者交换等级相同的不同妖兽
 	bool trade(Monster& monster, Immortal& aImmortal, Monster& aMonster);
-
+	//和其他修仙者决斗,战斗力高者胜,得到对方所有资产
+	void fight(Immortal& other);
+	//升级,若自身战力大于下一级战力,则升级成功;否则死
+	void upgrade();
 	//捕获妖兽,根据战斗力捕获妖兽
 	void fight(Monster& monster);
 

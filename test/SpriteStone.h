@@ -22,11 +22,11 @@ public:
 	SpriteStone& operator-(const SpriteStone& otherStone);
 	bool operator==(const SpriteStone& otherStone);
 
+	int getCnt();
+
 private:
 	int cnt;
 	SPRITESTONE_LEVEL level;
 
 	friend ostream& operator<<(ostream& os, const SpriteStone& stone);
 };
-
-ostream& operator<<(ostream& os, const SpriteStone& stone);

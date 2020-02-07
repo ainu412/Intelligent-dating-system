@@ -19,7 +19,7 @@ class Monster
 {
 public:
 	Monster(MONSTER_LEVEL level = MONSTER_LEVEL::ONE, string category = "");
-	
+
 	SpriteStone getValue() const;
 	bool operator==(const Monster& other)const;
 	int getPower()const;

@@ -11,7 +11,7 @@ void testMonster() {
 	cout << m << endl;
 }
 void testImmortal() {
-	Immortal zy("子怡", IMMORTAL_LEVEL::DU_JIE, "好人");
+	Immortal zy("子怡", IMMORTAL_LEVEL::DA_CHENG, "好人");
 	cout << "初始时:" << zy << endl;
 	for (int i = 0; i < 2000; i++) {
 		zy.mining();
@@ -40,7 +40,11 @@ void testImmortal() {
 	cout << "售出一只妖兽后:" << rr << endl;
 
 	zy.trade(m4, rr, m5);
-	cout << "交换妖兽后:" << zy << endl << rr;
+	cout << "交换妖兽后:" << zy << endl << rr << endl;
+	zy.fight(rr);
+	cout << "决斗后:" << zy << endl << rr << endl;
+	zy.upgrade();
+	cout << "渡劫后:" << zy << endl;
 }
 int main() {
 

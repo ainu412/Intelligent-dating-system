@@ -17,6 +17,7 @@ Boy::Boy(const char* name,const int age)
 
 Boy::Boy(int age)
 {
+
 	const char tmp[10] = "未命名";//为了赋常字符串,要把name类型也改为const
 	this->name = new char[strlen(tmp) + 1];//记得包括字符串末尾的'\0'
 	strcpy_s(this->name, strlen(tmp) + 1, tmp);
@@ -39,16 +40,29 @@ Boy::Boy(const char* name)
 	id = ++total_id;
 }
 
+Boy::Boy(const Boy& boy)
+{
+	//初始化时调用拷贝构造函数
+	//对象还没生成,不用删除内存
+	name = new char[strlen(boy.name) + 1];
+	strcpy_s(name, strlen(boy.name) + 1, boy.name);
+
+	age = boy.age;
+	id = ++total_id;
+}
+
 Boy::~Boy() {
 	delete[] name;//除掉初始化时申请的内存
 }
 
-Boy& Boy::operator=(const Boy& boy) {
+Boy& Boy::operator=(const Boy& boy) {//参数若为指针,不认!!
 	//视需求而定
 	//一般不需要释放赋值boy的内存,因为不覆盖原内存信息,仅被赋值
 	//delete[] boy.name;
 	//需释放将被赋值boy的原有name内存
-	delete[]name;
+	if (name) {
+		delete[]name;
+	}
 
 	if (!boy.name) {
 		cout << "赋值男生姓名指针为空!" << endl;
@@ -70,6 +84,11 @@ Boy& Boy::operator=(const Boy& boy) {
 	return *this;
 }
 
+//Boy& Boy::operator=(const Boy* boy) {//浅赋值:=浅拷贝
+//	name = boy->name;//地址不能直接赋值,会拥堵
+//	age = boy->age;
+//	id = boy->id;
+//}
 const Boy& Boy::operator>(const Boy& boy)const//
 {
 	if (age > boy.age) {

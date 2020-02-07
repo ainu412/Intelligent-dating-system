@@ -11,7 +11,7 @@ Man::Man(Boy& boy)
 	//直接赋值方式需要修改boy为char*型,故取消const
 	//简单方法还是直接getName()
 
-	//age = boy[AGE_KEY];也可
+	age = boy[AGE_KEY];//也可
 	age = boy;
 
 	

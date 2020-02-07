@@ -1,7 +1,7 @@
 #include "Boy.h"
 #include "Man.h"
 int main() {
-	/*Boy b1, b2;//没有默认构造函数就按带参构造函数的默认值初始化吗?
+	Boy b1(1), b2(2);//没有默认构造函数就按带参构造函数的默认值初始化吗?
 			   //是滴,若默认参数在声明时写好
 			   //没写好的话main中初始化对象:b1会出错的,b1()不会出错
 	Boy b3("Larry", 22);
@@ -10,17 +10,17 @@ int main() {
 	b2.description();
 	b3.description();
 
-	b1 = b2 = b3;
+	b2 = b3;
 
 	b1.description();
-	b2.description();
-	b3.description();
-	*/
+	b2.description();//boy深拷贝也触发断点??
+	//b3.description();
+	/*
 
 	Boy b1("Larry", 22);
 	Boy b2("J", 20);
 
-/*	Boy b= (b1 > b2);//相等打印自己(运算符前的)b1.(b2)
+	Boy b= (b1 > b2);//相等打印自己(运算符前的)b1.(b2)
 	b.description();
 
 	b = (b1 < b2);//相等打印别人(运算符后的)(b1,b2)
@@ -54,9 +54,9 @@ int main() {
 	}
 	strcpy_s(name, len * sizeof(int) + 1, (char*)b1);//类类型 => 普通类型:
 	cout << name << endl << age;
-*/
+
 	Man m1 = b1;//类A => 类B
 	cout << m1;
-
+	*/
 	return 0;
 }

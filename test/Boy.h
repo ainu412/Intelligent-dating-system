@@ -13,7 +13,7 @@ public:
 	Boy(const char* name,const int age);
 	Boy(int age);
 	Boy(const char* name);
-
+	Boy(const Boy& boy);
 	~Boy();
 
 	void description();

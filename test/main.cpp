@@ -1,62 +1,57 @@
-#include "Boy.h"
-#include "Man.h"
-int main() {
-	Boy b1(1), b2(2);//没有默认构造函数就按带参构造函数的默认值初始化吗?
-			   //是滴,若默认参数在声明时写好
-			   //没写好的话main中初始化对象:b1会出错的,b1()不会出错
-	Boy b3("Larry", 22);
-	//b1(b2);调用运算符重载构造函数	Boy& operator()(const Boy& boy);
-	b1.description();
-	b2.description();
-	b3.description();
+#include "SpriteStone.h"
+#include "Monster.h"
+#include "Immortal.h"
 
-	b2 = b3;
-
-	b1.description();
-	b2.description();//boy深拷贝也触发断点??
-	//b3.description();
-	/*
-
-	Boy b1("Larry", 22);
-	Boy b2("J", 20);
-
-	Boy b= (b1 > b2);//相等打印自己(运算符前的)b1.(b2)
-	b.description();
-
-	b = (b1 < b2);//相等打印别人(运算符后的)(b1,b2)
-	b.description();
-
-	b1 == b2;
-
-	//cout << b1[NAME_KEY] << endl;
-	cout << b1[AGE_KEY] << endl;
-
-	b2 >> (b1 >> cout);//成员函数：反常识
-	cout << b1 << b2;//友元函数
-
-	b2 << (b1 << cin);//成员函数:反常识
-	cin >> b1 >> b2;//友元函数
-	cout << b1 << b2;
-
-	//函数创建后还可以通过构造函数改变数据吗?
-	//如Boy b2;b2("肉肉", 18);不可以,只能通过operator()
-	//故构造函数中可直接写上各数据初始值,如age=0若没有输入age值
-
-	Boy b10 = 10, ba = "a";//普通类型 => 类类型:利用带参构造函数
-	b10.description();
-	ba.description();
-
-	int age = b1;
-	int len = strlen((char*)b1);
-	char* name = (char*)malloc(len * sizeof(int) + 1);
-	if (!name) {//确保name不为空
-		*name = age;
+void testSpriteStone() {
+	SpriteStone s(100, SPRITESTONE_LEVEL::ADVANCED_LEVEL);
+	cout << s << endl;
+}
+void testMonster() {
+	Monster m(MONSTER_LEVEL::FOUR, "肉肉妖");
+	cout << m << endl;
+}
+void testImmortal() {
+	Immortal zy("子怡", IMMORTAL_LEVEL::DU_JIE, "好人");
+	cout << "初始时:" << zy << endl;
+	for (int i = 0; i < 2000; i++) {
+		zy.mining();
 	}
-	strcpy_s(name, len * sizeof(int) + 1, (char*)b1);//类类型 => 普通类型:
-	cout << name << endl << age;
+	cout << "<<挖矿2000次后:" << zy << endl;
+	Monster m1(MONSTER_LEVEL::ONE, "111");
+	Monster m2(MONSTER_LEVEL::TWO, "222");
+	Monster m3(MONSTER_LEVEL::ONE, "333");
+	zy.fight(m1);
+	zy.fight(m2);
+	zy.fight(m3);
+	cout << "战斗三只妖兽后:" << zy << endl;
+	zy.trade(m1);
+	cout << "在市场卖掉m1后:" << zy << endl;
+	zy.trade();
+	cout << "卖掉全部妖兽后:" << zy << endl;
 
-	Man m1 = b1;//类A => 类B
-	cout << m1;
-	*/
+	Immortal rr("肉肉", IMMORTAL_LEVEL::DA_CHENG, "坏人");
+	Monster m4(MONSTER_LEVEL::ONE, "444");
+	Monster m5(MONSTER_LEVEL::ONE, "555");
+	rr.fight(m4);
+	rr.fight(m5);
+	cout << "战斗两只妖兽后:" << rr << endl;
+	rr.trade(m4, zy);
+	cout << "购买一只妖兽后:" << zy << endl;
+	cout << "售出一只妖兽后:" << rr << endl;
+
+	zy.trade(m4, rr, m5);
+	cout << "交换妖兽后:" << zy << endl << rr;
+}
+int main() {
+
+	testSpriteStone();
+	testMonster();
+	testImmortal();
+
+
 	return 0;
 }
+
+//ostream<<记得把对象类const化,防止输出时对它修改
+//operator+时也把参数const化,相加后结果返回this或 新建一个对象
+//不改变所在对象的函数const化,方便const调用

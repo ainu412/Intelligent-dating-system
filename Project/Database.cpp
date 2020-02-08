@@ -23,17 +23,25 @@ void Database::inputMatch() const {
 	automatchGirl(boys, newGirls);
 	cout << line << endl;
 }
-void Database::bestMatch() const
+void Database::allBestMatch() const
 {
 	cout << "全部单身男女最佳配对结果:" << endl;
-	automatchBoy(boys, girls);
-	automatchGirl(boys, girls);
+	bestMatchBoy(boys, girls);
+	bestMatchGirl(boys, girls);
 }
 
-void Database::bestMatchBoy(vector<Boy> boys, vector<Girl> girls) const {
+void Database::inputBestMatch() const
+{
+	cout << "输入单身男最佳配对结果:" << endl;
+	bestMatchBoy(newBoys, girls);
+	cout << "输入单身女最佳配对结果:" << endl;
+	bestMatchGirl(boys, newGirls);
+}
+
+void Database::bestMatchBoy(const vector<Boy>& boys, const vector<Girl>& girls) const {
 	for (unsigned int b = 0; b < boys.size(); b++) {
-		cout << boys[b] << " 最佳配对女士为:" << endl;
-		Girl* bestGirl = NULL;
+		cout << boys[b] << " 的最佳配对女士为:" << endl;
+		const Girl* bestGirl = NULL;
 		for (unsigned int g = 0; g < girls.size(); g++) {
 			if (boys[b].satisfied(girls[g]) == true &&
 				girls[g].satisfied(boys[b]) == true) {//注意调用的是否是函数以及函数是否含参以及含参顺序
@@ -50,39 +58,40 @@ void Database::bestMatchBoy(vector<Boy> boys, vector<Girl> girls) const {
 		if (bestGirl) {
 			cout << *bestGirl;
 		}
-
+		else {
+			cout << "配对失败!" << endl;
+		}
 		cout << endl;//一位男士的所有配对结束后空一行
 	}
-
 }
-
-void Database::bestMatchGirl(vector<Boy> boys, vector<Girl> girls) const
-{
+void Database::bestMatchGirl(const vector<Boy>& boys, const vector<Girl>& girls) const {
 	for (unsigned int g = 0; g < girls.size(); g++) {
-		cout << girls[g] << " 最佳配对男士为:" << endl;
-		Boy* bestBoy = NULL;
-		for (unsigned int g = 0; g < girls.size(); g++) {
-			for (unsigned int b = 0; b < boys.size(); b++) {
-				if (boys[b].satisfied(girls[g]) == true &&
-					girls[g].satisfied(boys[b]) == true) {//注意调用的是否是函数以及函数是否含参以及含参顺序
+		cout << girls[g] << " 的最佳配对男士为:" << endl;
+		const Boy* bestBoy = NULL;
+		for (unsigned int b = 0; b < boys.size(); b++) {
+			if (boys[b].satisfied(girls[g]) == true &&
+				girls[g].satisfied(boys[b]) == true) {//注意调用的是否是函数以及函数是否含参以及含参顺序
 				//cout << boys[b].getName() << "<-->" << girls[g].getName() << endl;如果只打印姓名,可能有重名,无法确定实际是哪位
 				//因为database与Boy和Girl类不存在继承关系,所以只能通过对象调用public方法
-					if (!bestBoy) {
-						bestBoy = &boys[g];
-					}
-					else if (boys[g] > * bestBoy) {//TO DO <运算符重载
-						bestBoy = &boys[g];
-					}
+				if (!bestBoy) {
+					bestBoy = &boys[b];
+				}
+				else if (boys[b] > * bestBoy) {//TO DO <运算符重载
+					bestBoy = &boys[b];
 				}
 			}
-			if (bestBoy) {
-				cout << *bestBoy << endl;
-			}
-			cout << endl;//一位女士的所有配对结束后空一行
 		}
+		if (bestBoy) {
+			cout << *bestBoy;
+		}
+		else {
+			cout << "配对失败!" << endl;
+		}
+		cout << endl;//一位女士的所有配对结束后空一行
 	}
 }
-void Database::automatchBoy(vector<Boy> boys, vector<Girl> girls)const
+
+void Database::automatchBoy(const vector<Boy>& boys, const vector<Girl>& girls)const
 {
 	//遍历两两配对
 	for (unsigned int b = 0; b < boys.size(); b++) {
@@ -98,7 +107,7 @@ void Database::automatchBoy(vector<Boy> boys, vector<Girl> girls)const
 		cout << endl;//一位男士的所有配对结束后空一行
 	}
 }
-void Database::automatchGirl(vector<Boy> boys, vector<Girl> girls)const
+void Database::automatchGirl(const vector<Boy>& boys, const vector<Girl>& girls)const
 {
 	//遍历两两配对
 	for (unsigned int g = 0; g < girls.size(); g++) {
@@ -237,7 +246,7 @@ void Database::loadGirls(bool input)
 
 }
 
-void Database::saveBoys(vector<Boy> boys)
+void Database::saveBoys(const vector<Boy>& boys)
 {
 	ofstream boyfile;
 	boyfile.open(BOY_FILE, ios::app);//尾部附加
@@ -253,7 +262,7 @@ void Database::saveBoys(vector<Boy> boys)
 	boyfile.close();
 }
 
-void Database::saveGirls(vector<Girl> girls)
+void Database::saveGirls(const vector<Girl>& girls)
 {
 	ofstream girlfile;
 	girlfile.open(GIRL_FILE, ios::app);

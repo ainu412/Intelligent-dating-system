@@ -24,7 +24,8 @@ public:
 	void print() const;//打印boys和girls中所有男女信息
 	void allMatch() const;
 	void inputMatch() const;
-	void bestMatch() const;
+	void allBestMatch() const;
+	void inputBestMatch() const;
 private:
 	vector<Boy> boys;//vector每次用之前需要初始化为0吗?
 	vector<Girl> girls;
@@ -34,14 +35,14 @@ private:
 	void loadBoys(bool input);//将文件中加载至vector
 	void loadGirls(bool input);
 
-	void saveBoys(vector<Boy> boys);//将vector中存入文件
-	void saveGirls(vector<Girl> girls);
+	void saveBoys(const vector<Boy>& boys);//将vector中存入文件
+	void saveGirls(const vector<Girl>& girls);
 
-	void automatchBoy(vector<Boy> boys, vector<Girl> girls) const;
-	void automatchGirl(vector<Boy> boys, vector<Girl> girls) const;
+	void automatchBoy(const vector<Boy>& boys, const vector<Girl>& girls) const;
+	void automatchGirl(const vector<Boy>& boys, const vector<Girl>& girls) const;
 
-	void bestMatchBoy(vector<Boy> boys, vector<Girl> girls) const;
-	void bestMatchGirl(vector<Boy> boys, vector<Girl> girls) const;
+	void bestMatchBoy(const vector<Boy>& boys, const vector<Girl>& girls) const;
+	void bestMatchGirl(const vector<Boy>& boys, const vector<Girl>& girls) const;
 
 };
 

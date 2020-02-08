@@ -3,18 +3,16 @@
 #include <iomanip>
 #define FACESCORE_COEFFICIENT 100
 #include "Boy.h"
-Girl::Girl(string name, int age, int faceScore) :Single (name, age) {
-
-	this->faceScore = faceScore;
-}
+Girl::Girl(string name, int age, int faceScore) 
+	 :Single (name, age), faceScore(faceScore) {}
 
 bool Girl::satisfied(const Boy& boy)const
 {
-	if ( boy.getSalary() >= faceScore*FACESCORE_COEFFICIENT) return true;//因为有boy的方法,所以要包括boy的头文件
+	if ( boy.trait() >= faceScore * FACESCORE_COEFFICIENT) return true;//因为有boy的方法,所以要包括boy的头文件
 	return false;
 }
 
-bool Girl::operator>(Girl& girl)
+bool Girl::operator>(const Girl& girl)const
 {
 	return faceScore > girl.faceScore;
 }

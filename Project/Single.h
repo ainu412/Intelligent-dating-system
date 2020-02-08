@@ -10,6 +10,8 @@ public:
 	string getName()const;
 	int getAge()const;
 
+	virtual int trait()const = 0;
+
 protected:
 	string name;
 	int age;

@@ -1,8 +1,7 @@
 #include "Single.h"
-Single::Single(string name = "", int age = 0) {
-	this->name = name;
-	this->age = age;
-}
+Single::Single(string name = "", int age = 0)
+	   : name(name),age(age){}
+
 string Single::getName()const {
 	return name;
 }

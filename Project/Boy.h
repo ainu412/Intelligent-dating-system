@@ -9,13 +9,13 @@ class Boy:public Single{
 public:
 	Boy(string name, int age, int salary);
 
-	int getSalary()const{
+	int trait()const{
 		return salary;
 	}
 	bool satisfied(const Girl& girl)const;
 	//string description()const;
 
-	bool operator>(Boy& boy);
+	bool operator>(const Boy& boy)const;
 
 	static void inputBoys(vector<Boy>& boys);//控制台中转至容器,容器中转至文件
 

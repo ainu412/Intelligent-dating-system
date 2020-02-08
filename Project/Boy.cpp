@@ -4,15 +4,15 @@
 #include "Girl.h"
 #define SALARY_COEFFICIENT 0.006
 
-Boy::Boy(string name = "", int age = 0, int salary = 0) :Single(name, age){//若二者合一,则定义新变量时是否需要带括号??必须带括号,因为不存在默认构造函数!
-	this->salary = salary;
-}
+Boy::Boy(string name = "", int age = 0, int salary = 0) 
+	:Single(name, age),salary(salary) {}//若二者合一,则定义新变量时是否需要带括号??必须带括号,因为不存在默认构造函数!
+
 
 bool Boy::satisfied(const Girl& girl)const
 {	
 	int satisfiedFaceScore = salary * SALARY_COEFFICIENT;
 	if (salary * SALARY_COEFFICIENT > 100) satisfiedFaceScore = 100;
-	if (girl.getFaceScore() >= satisfiedFaceScore) return true;
+	if (girl.trait() >= satisfiedFaceScore) return true;
 	return false;
 }
 
@@ -25,7 +25,7 @@ bool Boy::satisfied(const Girl& girl)const
 //	return ret.str();
 //}
 
-bool Boy::operator>(Boy& boy)
+bool Boy::operator>(const Boy& boy)const
 {
 	return salary > boy.salary;
 }
@@ -53,7 +53,7 @@ void Boy::inputBoys(vector<Boy>& boys)
 	}
 }
 //cout << 重载和比较 < 重载
-ostream& operator<<(ostream& os, const Boy& boy) {
+ostream& operator<<(ostream& os, const Boy& boy) {//直接打印,无需返回stringstream.str()的函数中转
 	os << "男 姓名:" << setw(9) << left << boy.name
 		<< " 年龄:" << setw(4) << boy.age
 		<< "月薪:" << boy.salary << endl;

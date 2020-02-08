@@ -25,12 +25,22 @@ void inputMatches() {//单身女配对:一个女和所有男试一遍,把和自�
 	data.load(input);
 	data.inputMatch();
 }
-void bestMatches() {
+
+//打印所有用户的最佳配对信息
+void allBestMatches() {
 	Database data;
-	data.load(input);
-	data.bestMatch();
+	data.load(false);
+	data.allBestMatch();
 }
+
+//打印输入用户的最佳配对信息
+void inputBestMatches() {
+	Database data;
+	data.load(true);
+	data.inputBestMatch();
+}
+
 int main() {
-	bestMatches();
+	allBestMatches();
 	return 0;
 }

@@ -29,18 +29,43 @@ void inputMatches() {//单身女配对:一个女和所有男试一遍,把和自�
 //打印所有用户的最佳配对信息
 void allBestMatches() {
 	Database data;
-	data.load(false);
+	data.load();
 	data.allBestMatch();
 }
 
 //打印输入用户的最佳配对信息
 void inputBestMatches() {
 	Database data;
-	data.load(true);
+	data.load(input);
 	data.inputBestMatch();
 }
 
 int main() {
-	allBestMatches();
+	cout << "请输入查看配对信息方式[1-4]:" << endl;
+	cout << "1.打印数据库内所有用户的配对信息" << endl;
+	cout << "2.打印数据库内所有用户的最佳配对信息" << endl;
+	cout << "3.打印输入用户的配对信息" << endl;
+	cout << "4.打印输入用户的最佳配对信息" << endl;
+
+	int index;
+	cin >> index;
+	switch (index)
+	{
+	case 1:
+		allMatches();
+		break;
+	case 2:
+		allBestMatches();
+		break;
+	case 3:
+		inputMatches();
+		break;
+	case 4:
+		inputBestMatches();
+		break;
+	default:
+		break;
+	}
+
 	return 0;
 }

@@ -8,8 +8,7 @@ Girl::Girl(string name, int age, int faceScore)
 
 bool Girl::satisfied(const Boy& boy)const
 {
-	if ( boy.trait() >= faceScore * FACESCORE_COEFFICIENT) return true;//因为有boy的方法,所以要包括boy的头文件
-	return false;
+	return boy.trait() >= faceScore * FACESCORE_COEFFICIENT;//因为有boy的方法,所以要包括boy的头文件
 }
 
 bool Girl::operator>(const Girl& girl)const

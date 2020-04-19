@@ -17,18 +17,18 @@ class Database
 public:
 	Database();
 
-	void load(bool input) {
+	void load(bool input = false) {
 		loadBoys(input);
 		loadGirls(input);
 	}
-	void print() const;//打印boys和girls中所有男女信息
+	void print() const;//打印boys和allGirls中所有男女信息
 	void allMatch() const;
 	void inputMatch() const;
 	void allBestMatch() const;
 	void inputBestMatch() const;
 private:
 	vector<Boy> boys;//vector每次用之前需要初始化为0吗?
-	vector<Girl> girls;
+	vector<Girl>allGirls;
 	vector<Boy> newBoys;
 	vector<Girl> newGirls;
 
@@ -36,13 +36,13 @@ private:
 	void loadGirls(bool input);
 
 	void saveBoys(const vector<Boy>& boys);//将vector中存入文件
-	void saveGirls(const vector<Girl>& girls);
+	void saveGirls(const vector<Girl>&allGirls);
 
-	void automatchBoy(const vector<Boy>& boys, const vector<Girl>& girls) const;
-	void automatchGirl(const vector<Boy>& boys, const vector<Girl>& girls) const;
+	void automatchBoy(const vector<Boy>& boys, const vector<Girl>&allGirls) const;
+	void automatchGirl(const vector<Boy>& boys, const vector<Girl>&allGirls) const;
 
-	void bestMatchBoy(const vector<Boy>& boys, const vector<Girl>& girls) const;
-	void bestMatchGirl(const vector<Boy>& boys, const vector<Girl>& girls) const;
+	void bestMatchBoy(const vector<Boy>& boys, const vector<Girl>&allGirls) const;
+	void bestMatchGirl(const vector<Boy>& boys, const vector<Girl>&allGirls) const;
 
 };
 
